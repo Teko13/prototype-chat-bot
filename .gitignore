@@ -1,0 +1,10 @@
+
+###> symfony/framework-bundle ###
+/botapi/.env.local
+/botapi/.env.local.php
+/botapi/.env.*.local
+/botapi/config/secrets/prod/prod.decrypt.private.php
+/botapi/public/bundles/
+/botapi/var/
+/botapi/vendor/
+###< symfony/framework-bundle ###

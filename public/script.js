@@ -11,18 +11,20 @@ btn.addEventListener("click", () => {
     msgContainer.appendChild(userMsg);
     chat.appendChild(msgContainer);
     chat.scrollTop = chat.scrollHeight;
+    const inputValue = input.value;
     input.value = "";
-    fetch("http://localhost:8000/").then((result) => {
+    fetch(`http://localhost:8000/?question=${inputValue}`).then((result) => {
         return result.json();
     }).then((data) => {
-        console.log(data);
-        // const botMsgContainer = document.createElement("div");
-        // const botMsg = document.createElement("div");
-        // botMsgContainer.classList.add("msg-container");
-        // botMsg.classList.add("bot-msg");
-        // botMsg.textContent = data;
-        // botMsgContainer.appendChild(botMsg);
-        // chat.appendChild(botMsgContainer);
-        // chat.scrollTop = chat.scrollHeight;
+        const dataObj = JSON.parse(data);
+        //console.log(dataObj.assistant);
+        const botMsgContainer = document.createElement("div");
+        const botMsg = document.createElement("div");
+        botMsgContainer.classList.add("msg-container");
+        botMsg.classList.add("bot-msg");
+        botMsg.textContent = dataObj.assistant;
+        botMsgContainer.appendChild(botMsg);
+        chat.appendChild(botMsgContainer);
+        chat.scrollTop = chat.scrollHeight;
     });
 });
